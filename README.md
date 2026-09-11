@@ -1,5 +1,5 @@
 # Terminal Clock
-![Demo](https://github.com/chris90483/termiclock/raw/refs/heads/master/demo.mp4)
+<video src="./demo.mp4" controls></video>
 
 ## requirements
 a POSIX system
