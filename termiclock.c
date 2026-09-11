@@ -13,6 +13,8 @@
 ////////////////
 #define ANSI_ERASE_STARTING_FROM_CURSOR "\033[0J"
 #define ANSI_MOVE_CURSOR_TO_START_N_LINES_UP(n) "\033[" STRINGIFY_EXPAND(n) "F"
+#define ANSI_MAKE_CURSOR_INVISIBLE "\033[?25l"
+#define ANSI_MAKE_CURSOR_VISIBLE "\033[?25h"
 /// /////////
 // Globals //
 /////////////
@@ -234,6 +236,7 @@ int main(void)
 	
 	// main loop
 	printf("\n");
+    printf(ANSI_MAKE_CURSOR_INVISIBLE);
 	while (g_keep_running) {
 		printf(ANSI_ERASE_STARTING_FROM_CURSOR);
 		
@@ -244,6 +247,7 @@ int main(void)
 		sleep_ms(100);		
 	}
 	
+    printf(ANSI_MAKE_CURSOR_VISIBLE);
 	printf(ANSI_ERASE_STARTING_FROM_CURSOR);
 	
 	pthread_join(listen_keyboard_thread, NULL);
