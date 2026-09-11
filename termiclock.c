@@ -209,16 +209,16 @@ void draw_next_frame() {
 	
 	// draw stuff	
 	for (int row = 0; row < 7; row++) {
-		printf("%s", g_ascii_art[i_h0][row]);
-		printf("%s", g_ascii_art[i_h1][row]);
-		printf("%s", g_ascii_art[ARTWORK_I_COLON][row]);
-		printf("%s", g_ascii_art[i_m0][row]);
-		printf("%s", g_ascii_art[i_m1][row]);
-		printf("%s", g_ascii_art[ARTWORK_I_COLON][row]);
-		printf("%s", g_ascii_art[i_s0][row]);
-		printf("%s", g_ascii_art[i_s1][row]);
-		
-		printf("\n");
+		printf("%s%s%s%s%s%s%s%s\n", 
+			g_ascii_art[i_h0][row],
+			g_ascii_art[i_h1][row],		
+			g_ascii_art[ARTWORK_I_COLON][row],
+			g_ascii_art[i_m0][row],
+			g_ascii_art[i_m1][row],
+			g_ascii_art[ARTWORK_I_COLON][row],
+			g_ascii_art[i_s0][row],
+			g_ascii_art[i_s1][row]
+		);
 	}
 }
 
