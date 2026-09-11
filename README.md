@@ -1,5 +1,7 @@
 # Terminal Clock
-<video src="./demo.mp4" controls></video>
+<video controls width="800">
+  <source src="./demo.mp4" type="video/mp4">
+</video>
 
 ## requirements
 a POSIX system
