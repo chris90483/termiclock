@@ -1,5 +1,5 @@
 # Terminal Clock
-![Demo](./demo.gif)]
+<img src="./demo.gif" width="800">
 
 ## requirements
 a POSIX system
