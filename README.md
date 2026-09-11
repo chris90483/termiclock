@@ -1,10 +1,10 @@
 # Terminal Clock
 <img src="./demo.gif" width="800">
 
-## requirements
+## Requirements
 a POSIX system
 
-## install & run
+## Install & run
 ```
 make && ./termiclock
 ```
