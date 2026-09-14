@@ -399,24 +399,21 @@ void update_transition_draw_state(struct DrawState *draw_state) {
 	}
 }
 
-void draw_setting_changed(struct DrawState *draw_state) {
+int draw_setting_changed(struct DrawState *draw_state) {
+	printf("\n\n\n\n\n\n\n\n");
 	switch (draw_state->setting.last_setting_type) {
 		case INCREASE_ANIMATION_SPEED:
-			printf("=======================================\n");
 			printf("==Increase animation speed to %03ld ms!==\n", g_sleep_ms);
-			printf("=======================================\n");
 			break;
 		case DECREASE_ANIMATION_SPEED:
-			printf("=======================================\n");
 			printf("==Decrease animation speed to %03ld ms!==\n", g_sleep_ms);
-			printf("=======================================\n");
 			break;
 		default: 
-			printf("============================\n");
 			printf("==Unknown setting changed!==\n");
-			printf("============================\n");
 			break;
 	}
+	
+	return 9; // amount lines printed
 }
 
 void ansi(char *cmd) {
@@ -446,20 +443,23 @@ int main(void)
 	ansi(ANSI_MAKE_CURSOR_INVISIBLE);
 	
 	while (g_keep_running) {
+		// ansi(ANSI_ERASE_STARTING_FROM_CURSOR);
 		int n_lines_up = 0;
 		
 		switch (draw_state.draw_target) {
 			case SETTING:
 				if (get_current_time_ms() - draw_state.setting.last_setting_action_time_ms > 1000) {
+					ansi(ANSI_ERASE_STARTING_FROM_CURSOR);
 					draw_state.draw_target = CLOCK;
 					continue;
 				}
 				
-				draw_setting_changed(&draw_state);
-				n_lines_up = 3;
-				break;
-			case CLOCK:	
-				ansi(ANSI_ERASE_STARTING_FROM_CURSOR);	
+				int setting_draw_amount_lines = draw_setting_changed(&draw_state);
+				
+				ansi(ANSI_MOVE_CURSOR_TO_START_N_LINES_UP(setting_draw_amount_lines));				
+				// fallthrough so the clock also gets a new frame
+				/* fall through */
+			case CLOCK:
 				update_art_indices(&draw_state);
 				update_transition_draw_state(&draw_state);
 				draw_next_frame(&draw_state);
